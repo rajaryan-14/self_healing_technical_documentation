@@ -66,7 +66,7 @@ For a short walkthrough, see [the demo script](docs/DEMO.md).
 
 ## Demo video
 
-[Download the silent 58-second demo video](docs/self-healing-demo.mp4) and add narration or captions as desired.
+[Download the silent 58-second demo video](docs/self-healing-demo.mp4) and use the matching [SRT caption file](docs/self-healing-demo.srt) when adding narration or captions.
 
 The index is written to `.self-healing/docs-index.json`. Add that directory to `.gitignore` if you prefer to regenerate it in CI.
 
