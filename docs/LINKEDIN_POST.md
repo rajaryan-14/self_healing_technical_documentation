@@ -1,19 +1,22 @@
 # LinkedIn post draft
 
-I built a GitHub Action that helps keep technical documentation synchronized with code changes.
+What if your documentation could notice when your code made it outdated?
 
-When a pull request changes a Python function, configuration value, or API-related symbol, the Action identifies the Markdown sections that may now be stale and reports them directly in the PR.
+I built a small GitHub Action that does exactly that.
 
-What I focused on:
+When a pull request changes Python code, it finds the Markdown sections connected to that code and flags the ones that might now be stale—right inside the PR.
 
-- Rules-first detection that works without an OpenAI API key
+The demo is simple: I change a server’s default port from 8000 to 8100, leave the README unchanged, and the Action catches it. Once I update the README, the check goes green.
+
+The parts I enjoyed building:
+
+- A rules-first detector that works without an OpenAI API key
 - Python AST parsing and Markdown section mapping
 - Git diff-aware change detection
 - Optional local Ollama review and repair generation
-- Validation before any automated documentation change
+- A validation pass before anything is changed automatically
 - A real GitHub Action workflow with PR checks
 
-The demo is intentionally small: change a server’s default port without updating its documentation, and the Action catches the mismatch. Update the docs, and the check goes green.
+I wanted to build something that feels like a real engineering tool—not just a demo that runs locally.
 
 Repository: https://github.com/rajaryan-14/self_healing_technical_documentation
-
