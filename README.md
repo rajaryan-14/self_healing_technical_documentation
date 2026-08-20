@@ -10,6 +10,8 @@ A rules-first GitHub Action that identifies Markdown sections potentially made s
 - Finds linked documentation sections affected by a Git diff.
 - Returns exit code `1` when suspects are found, making it CI-friendly.
 
+The `demo/` directory is a small reproducible fixture: changing the default port in `demo/service.py` without updating `demo/README.md` should produce a documentation finding.
+
 ## Run locally
 
 ```powershell
