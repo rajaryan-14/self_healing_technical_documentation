@@ -39,6 +39,8 @@ The `demo/` directory is a small reproducible fixture: changing the default port
 
 ## Architecture
 
+![Self-Healing Technical Documentation architecture](docs/architecture.png)
+
 ```mermaid
 flowchart LR
     A[Pull request changes] --> B[Python parser]
