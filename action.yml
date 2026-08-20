@@ -1,6 +1,9 @@
 name: Self-Healing Documentation Check
 description: Detect Markdown sections potentially made stale by changed Python code
 author: Self-Healing Docs
+branding:
+  icon: book-open
+  color: green
 inputs:
   fail-on-findings:
     description: Fail the workflow when linked documentation suspects are found
