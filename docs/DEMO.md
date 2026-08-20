@@ -1,22 +1,27 @@
-# 90-second demo script
+# Video voiceover script
 
-## 0:00–0:15 — Problem
+This script is written for the silent 58-second demo video. Read it naturally at roughly 125–140 words per minute, or use it as captions.
 
-“Documentation becomes stale whenever code changes. This project turns that problem into a GitHub pull-request check.”
+## 0:00–0:06 — Opening
 
-## 0:15–0:35 — Show the intentional change
+“What if your documentation could notice when your code made it outdated?”
 
-Open `demo/service.py` and change the default port from `8000` to `8100`, leaving `demo/README.md` unchanged.
+## 0:06–0:16 — The change
 
-## 0:35–0:55 — Open the pull request
+“Here, the server’s default port changes from 8000 to 8100. The code is updated, but the README still says 8000.”
 
-Push the branch and open a PR. The Documentation Check runs and identifies the affected Markdown section instead of scanning the entire repository blindly.
+## 0:16–0:26 — Detection
 
-## 0:55–1:10 — Show the fix
+“When the pull request opens, the Documentation Check finds the specific Markdown section connected to that code change.”
 
-Update `demo/README.md` to port `8100`, push again, and show the green check with no findings.
+## 0:26–0:36 — Review
 
-## 1:10–1:30 — Explain the design
+“The default workflow is rules-first and doesn’t need an OpenAI API key. An optional local Ollama model can review the finding and suggest a focused fix.”
 
-“The default mode requires no OpenAI key. It uses Python AST parsing, Markdown heading sections, stable links, and Git diff ranges. Ollama is optional for review and validated repairs.”
+## 0:36–0:46 — Validation
 
+“Before anything is changed automatically, the repair goes through a second validation pass. Low-confidence suggestions stay proposals.”
+
+## 0:46–0:58 — Result
+
+“Once the README is updated to 8100, the check goes green. The project connects Python parsing, Markdown mapping, Git diffs, and pull request feedback in one small workflow.”
