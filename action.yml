@@ -1,0 +1,24 @@
+name: Self-Healing Documentation Check
+description: Detect Markdown sections potentially made stale by changed Python code
+author: Self-Healing Docs
+inputs:
+  fail-on-findings:
+    description: Fail the workflow when linked documentation suspects are found
+    required: false
+    default: "false"
+  comment:
+    description: Post findings as a pull request comment when running in PR context
+    required: false
+    default: "true"
+  auto-repair:
+    description: Create a branch and draft PR for validated local-model repairs
+    required: false
+    default: "false"
+outputs:
+  findings:
+    description: JSON array of documentation sections linked to changed code
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.fail-on-findings }}

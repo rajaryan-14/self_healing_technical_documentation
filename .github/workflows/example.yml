@@ -1,0 +1,26 @@
+name: Documentation Check
+
+on:
+  pull_request:
+    paths:
+      - "**.py"
+      - "**.md"
+      - "action.yml"
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check documentation
+        uses: ./
+        id: check
+        with:
+          fail-on-findings: false
+          comment: true
+          auto-repair: false
