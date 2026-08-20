@@ -62,7 +62,6 @@ python -m self_healing_docs.cli check --root . --base HEAD~1
 python -m pytest
 ```
 
-For a short walkthrough, see [the demo script](docs/DEMO.md).
 
 ## Demo video
 
