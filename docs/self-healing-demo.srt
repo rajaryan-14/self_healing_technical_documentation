@@ -1,0 +1,29 @@
+1
+00:00:00,000 --> 00:00:06,000
+What if your documentation could notice when your code made it outdated?
+
+2
+00:00:06,000 --> 00:00:16,000
+Here, the server's default port changes from 8000 to 8100.
+The code is updated, but the README still says 8000.
+
+3
+00:00:16,000 --> 00:00:26,000
+When the pull request opens, the Documentation Check finds
+the specific Markdown section connected to that code change.
+
+4
+00:00:26,000 --> 00:00:36,000
+The default workflow is rules-first and doesn't need an OpenAI API key.
+An optional local Ollama model can review the finding and suggest a focused fix.
+
+5
+00:00:36,000 --> 00:00:46,000
+Before anything is changed automatically, the repair goes through a second validation pass.
+Low-confidence suggestions stay proposals.
+
+6
+00:00:46,000 --> 00:00:58,000
+Once the README is updated to 8100, the check goes green.
+The project connects Python parsing, Markdown mapping, Git diffs, and pull request feedback in one small workflow.
+
