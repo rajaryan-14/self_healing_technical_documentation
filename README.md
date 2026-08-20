@@ -37,6 +37,22 @@ jobs:
 
 The `demo/` directory is a small reproducible fixture: changing the default port in `demo/service.py` without updating `demo/README.md` should produce a documentation finding.
 
+## Architecture
+
+```mermaid
+flowchart LR
+    A[Pull request changes] --> B[Python parser]
+    B --> C[Code-to-doc index]
+    D[Markdown parser] --> C
+    C --> E[Rules-first diff detector]
+    E --> F[PR summary]
+    E --> G{Optional Ollama review}
+    G --> H[Validated repair]
+    H --> I[Draft repair PR]
+```
+
+The default path is local and rules-first. Ollama is optional and is used only for deeper review and repair generation.
+
 ## Run locally
 
 ```powershell
@@ -45,6 +61,8 @@ python -m self_healing_docs.cli index --root .
 python -m self_healing_docs.cli check --root . --base HEAD~1
 python -m pytest
 ```
+
+For a short walkthrough, see [the demo script](docs/DEMO.md).
 
 The index is written to `.self-healing/docs-index.json`. Add that directory to `.gitignore` if you prefer to regenerate it in CI.
 
