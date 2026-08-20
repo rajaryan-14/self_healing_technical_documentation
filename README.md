@@ -1,6 +1,31 @@
 # Self-Healing Technical Documentation
 
+![Documentation Check](https://github.com/rajaryan-14/self_healing_technical_documentation/actions/workflows/example.yml/badge.svg)
+
 A rules-first GitHub Action that identifies Markdown sections potentially made stale by Python code changes. It runs without an OpenAI API key and is designed to support an optional local Ollama review pass later.
+
+## Use the Action
+
+```yaml
+name: Documentation Check
+
+on: pull_request
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: rajaryan-14/self_healing_technical_documentation@v1
+        with:
+          comment: true
+          auto-repair: false
+```
 
 ## Current MVP
 
