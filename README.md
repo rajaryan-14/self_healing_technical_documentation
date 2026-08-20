@@ -64,6 +64,10 @@ python -m pytest
 
 For a short walkthrough, see [the demo script](docs/DEMO.md).
 
+## Demo video
+
+[Download the silent 58-second demo video](docs/self-healing-demo.mp4) and add narration or captions as desired.
+
 The index is written to `.self-healing/docs-index.json`. Add that directory to `.gitignore` if you prefer to regenerate it in CI.
 
 ## Planned next step
