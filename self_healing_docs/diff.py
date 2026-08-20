@@ -9,15 +9,28 @@ def changed_python_paths(diff: str) -> set[str]:
     return {match.group(1) for match in re.finditer(r"^diff --git a/(.*?) b/.*$", diff, re.MULTILINE) if match.group(1).endswith(".py")}
 
 
+def changed_lines_by_path(diff: str) -> dict[str, set[int]]:
+    result: dict[str, set[int]] = {}
+    blocks = re.split(r"(?=^diff --git )", diff, flags=re.MULTILINE)
+    for block in blocks:
+        header = re.search(r"^diff --git a/(.*?) b/.*$", block, re.MULTILINE)
+        if not header or not header.group(1).endswith(".py"):
+            continue
+        path = header.group(1)
+        lines = result.setdefault(path, set())
+        for start, count in re.findall(r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@", block, re.MULTILINE):
+            first = int(start)
+            amount = int(count or 1)
+            lines.update(range(first, first + amount))
+    return result
+
+
 def affected_chunks(index: DocumentationIndex, diff: str) -> set[str]:
-    paths = changed_python_paths(diff)
+    changed = changed_lines_by_path(diff)
     chunks: set[str] = set()
-    for path in paths:
-        changed_lines = [int(start) for start, _count in re.findall(r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@", diff, re.MULTILINE)]
+    for path, changed_lines in changed.items():
         for chunk in index.code_chunks:
             if chunk.path == path and any(chunk.start_line <= line <= chunk.end_line for line in changed_lines):
-                chunks.add(chunk.stable_id)
-            elif chunk.path == path and not changed_lines:
                 chunks.add(chunk.stable_id)
     return chunks
 
